@@ -1,0 +1,22 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        set_opening = {'(','{','['}
+        set_closing = {')','}',']'}
+        map = { 
+            ')':'(',
+            ']':'[',
+            '}':'{'
+        }
+        stack = []
+
+        for i in range(len(s)):
+            character = s[i]
+            if character in set_opening:
+                stack.append(character)
+            else:
+                if len(stack) == 0:
+                    return False
+                pop = map[character]
+                if stack.pop() != pop:
+                    return False
+        return len(stack) == 0
